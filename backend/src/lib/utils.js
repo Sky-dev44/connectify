@@ -1,13 +1,15 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv/config";
+import { ENV } from "./env.js";
 
 export const generateToken = (userId, res) => {
-  const { JWT_SECRET } = process.env;
+  const { JWT_SECRET } = ENV;
   if (!JWT_SECRET) {
     throw new Error("JWT_SCRET is not configured");
   }
 
   //create token for user
-  const token = jwt.sign({ userId }, JWT_SECRET, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId }, JWT_SECRET, {
     expiresIn: "7d",
   });
 
@@ -15,7 +17,7 @@ export const generateToken = (userId, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000, //ms
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV === "development" ? false : true,
+    secure: ENV.NODE_ENV === "development" ? false : true,
   });
 
   return token;
