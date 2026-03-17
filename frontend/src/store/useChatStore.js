@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export const useChatStore = create((set, get) => ({
   allContacts: [],
@@ -38,7 +39,7 @@ export const useChatStore = create((set, get) => ({
 
     try {
       const res = await axiosInstance.get("/messages/chats");
-      set({ allContacts: res.data });
+      set({ allChats: res.data });
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -48,14 +49,30 @@ export const useChatStore = create((set, get) => ({
 
   getMessagesByUserId: async (userId) => {
     set({ isMessagesLoading: true });
-
     try {
       const res = await axiosInstance.get(`/messages/${userId}`);
-      set({ messages: res.data });
+      set({ messages: res.data.messages || [] });
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       set({ isMessagesLoading: false });
+    }
+  },
+
+  sendMessage: async (messageData) => {
+    const { selectedUser, messages } = get();
+
+    try {
+      const res = await axiosInstance.post(
+        `/messages/send/${selectedUser._id}`,
+        messageData,
+      );
+      console.log("messages response:", res.data);
+
+      set({ messages: messages.concat(res.data.newMessage) });
+    } catch (error) {
+      console.log("Send message error", error);
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
   },
 }));
