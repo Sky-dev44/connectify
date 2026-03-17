@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useAuthStore } from "../store/useAuthStore";
 
 export const useChatStore = create((set, get) => ({
   allContacts: [],
@@ -51,7 +52,8 @@ export const useChatStore = create((set, get) => ({
     set({ isMessagesLoading: true });
     try {
       const res = await axiosInstance.get(`/messages/${userId}`);
-      set({ messages: res.data.messages || [] });
+      console.log("API response:", res.data); // 👀 Check structure
+      set({ messages: res.data.message || res.data || [] });
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
@@ -61,6 +63,21 @@ export const useChatStore = create((set, get) => ({
 
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
+    const { authUser } = useAuthStore.getState();
+
+    const tempId = `temp-${Date.now()}`;
+
+    const optimisticMessage = {
+      _id: tempId,
+      senderId: authUser._id,
+      reveiverId: selectedUser._id,
+      text: messageData.text,
+      image: messageData.image,
+      createdAt: new Date().toISOString(),
+      isOptimistic: true,
+    };
+
+    set({ messages: [...messages, optimisticMessage] });
 
     try {
       const res = await axiosInstance.post(
@@ -72,6 +89,7 @@ export const useChatStore = create((set, get) => ({
       set({ messages: messages.concat(res.data.newMessage) });
     } catch (error) {
       console.log("Send message error", error);
+      set({ messages: messages });
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   },
