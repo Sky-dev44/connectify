@@ -52,7 +52,6 @@ export const useChatStore = create((set, get) => ({
     set({ isMessagesLoading: true });
     try {
       const res = await axiosInstance.get(`/messages/${userId}`);
-      console.log("API response:", res.data); // 👀 Check structure
       set({ messages: res.data.message || res.data || [] });
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
@@ -84,7 +83,6 @@ export const useChatStore = create((set, get) => ({
         `/messages/send/${selectedUser._id}`,
         messageData,
       );
-      console.log("messages response:", res.data);
 
       set({ messages: messages.concat(res.data.newMessage) });
     } catch (error) {

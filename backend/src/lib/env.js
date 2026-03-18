@@ -7,7 +7,7 @@ export const ENV = {
   JWT_SECRET: process.env.JWT_SECRET,
   RESEND_API_KEY: process.env.RESEND_API_KEY,
   EMAIL_FROM: process.env.EMAIL_FROM,
-  EMAIL_FROM_Name: process.env.EMAIL_FROM_Name,
+  EMAIL_FROM_NAME: process.env.EMAIL_FROM_Name,
   CLIENT_URL: process.env.CLIENT_URL,
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
