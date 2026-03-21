@@ -7,14 +7,29 @@ import MessageInput from "./MessageInput";
 import MessagesLoadingSkeleton from "./MessageLoadingSkeleton";
 
 function ChatContainer() {
-  const { selectedUser, getMessagesByUserId, messages, isMessagesLoading } =
-    useChatStore();
+  const {
+    selectedUser,
+    getMessagesByUserId,
+    messages,
+    isMessagesLoading,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
 
   useEffect(() => {
     getMessagesByUserId(selectedUser._id);
-  }, [selectedUser, getMessagesByUserId]);
+    subscribeToMessages();
+
+    //cleanup
+    return () => unsubscribeFromMessages();
+  }, [
+    selectedUser,
+    getMessagesByUserId,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   useEffect(() => {
     if (messageEndRef.current) {
@@ -34,7 +49,7 @@ function ChatContainer() {
                 className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
               >
                 <div
-                  className={`chat-bubble relative ${message.senderId === authUser._id ? "bg-cyan-600 text-white" : "bg-slate-800 text-slate-200"}`}
+                  className={`chat-bubble relative ${message.senderId === authUser._id ? "bg-[#6272a4] text-[#f8f8f2]" : "bg-[#313342] text-[#cdd6f4]"}`}
                 >
                   {message.image && (
                     <img
@@ -47,7 +62,13 @@ function ChatContainer() {
                   {message.text && <p className="mt-2">{message.text}</p>}
 
                   {/* TIMESTAMPS FOR THE MESSAGES */}
-                  <p className="text-xs mt-1 opacity-75 flex items-center gap-1">
+                  <p
+                    className={`text-xs mt-1 opacity-75 flex items-center gap-1 ${
+                      message.senderId === authUser._id
+                        ? "text-[#f8f8f2]"
+                        : "text-[#6272a4]"
+                    }`}
+                  >
                     {new Date(message.createdAt).toLocaleTimeString(undefined, {
                       hour: "2-digit",
                       minute: "2-digit",

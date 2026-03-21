@@ -7,14 +7,14 @@ function ActiveTabSwitch() {
     <div className="tabs tabs-box bg-transparent p-2 m-2">
       <button
         onClick={() => setActiveTab("chats")}
-        className={`tab ${activeTab === "chats" ? "bg-cyan-500/20 text-cyan-400" : "text-slate-400"}`}
+        className={`tab ${activeTab === "chats" ? "bg-[#bd93f9]/20 text-[#bd93f9]" : "text-[#6272a4]"}`}
       >
         Chats
       </button>
 
       <button
         onClick={() => setActiveTab("contacts")}
-        className={`tab ${activeTab === "contacts" ? "bg-cyan-500/20 text-cyan-400" : "text-slate-400"}`}
+        className={`tab ${activeTab === "contacts" ? "bg-[#bd93f9]/20 text-[#bd93f9]" : "text-[#6272a4]"}`}
       >
         Contacts
       </button>

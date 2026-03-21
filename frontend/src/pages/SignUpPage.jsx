@@ -31,7 +31,7 @@ function SignUpPage() {
         <BorderAnimatedContainer>
           <div className="w-full flex flex-col md:flex-row">
             {/* FORM Column - left side */}
-            <div className="md:w-1/2 p-8 flex-items-center justify-center md:border-r border-slate-600/30">
+            <div className="md:w-1/2 p-8 flex-items-center justify-center md:border-r bg-dracula-bg border-slate-600/30">
               <div className="w-full max-w-md">
                 {/* HEADING TEXT */}
                 <div className="text-center mb-8">
@@ -119,15 +119,15 @@ function SignUpPage() {
             </div>
 
             {/* FORM - RIGHT SIDE */}
-            <div className="hidden md:w-1/2 md:flex items-center justify-center p-6 bg-gradient-to-bl from-slate-800/20 to-transparent">
+            <div className="hidden md:w-1/2 md:flex items-center justify-center p-6 bg-dracula-bg from-slate-800/20 to-transparent">
               <div>
                 <img
-                  src="/signup.png"
+                  src="/login3.png"
                   alt="People using mobile devices"
                   className="w-full h-auto object-contain"
                 />
                 <div className="mt-6 text-center">
-                  <h3 className="text-xl font-medium text-cyan-400">
+                  <h3 className="text-xl font-medium text-[#bd93f9]">
                     Start Your Journey Today
                   </h3>
                   <div className="mt-4 flex justify-center gap-4">

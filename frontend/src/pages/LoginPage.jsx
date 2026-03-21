@@ -24,12 +24,12 @@ function LoginPage() {
         <BorderAnimatedContainer>
           <div className="w-full flex flex-col md:flex-row">
             {/* FORM Column - left side */}
-            <div className="md:w-1/2 p-8 flex-items-center justify-center md:border-r border-slate-600/30">
+            <div className="md:w-1/2 p-8 flex-items-center justify-center md:border-r bg-dracula-bg border-slate-600/30">
               <div className="w-full max-w-md">
                 {/* HEADING TEXT */}
                 <div className="text-center mb-8">
-                  <MessageCircleCheckIcon className="w-12 h-12 mx-auto text-slate-400 mb-4" />
-                  <h2 className="text-2xl font-bold text-slate-200 mb-2">
+                  <MessageCircleCheckIcon className="w-12 h-12 mx-auto text-[#6272a4]  mb-4" />
+                  <h2 className="text-2xl font-bold text-[#f8f8f2] mb-2">
                     Welcome Back
                   </h2>
                   <p className="text-slate-400">Login to access your account</p>
@@ -95,15 +95,15 @@ function LoginPage() {
             </div>
 
             {/* FORM - RIGHT SIDE */}
-            <div className="hidden md:w-1/2 md:flex items-center justify-center p-6 bg-gradient-to-bl from-slate-800/20 to-transparent">
+            <div className="hidden md:w-1/2 md:flex items-center justify-center p-6 bg-dracula-bg from-slate-800/20 to-transparent">
               <div>
                 <img
-                  src="/login.png"
+                  src="/login3.png"
                   alt="People using mobile devices"
                   className="w-full h-auto object-contain"
                 />
                 <div className="mt-6 text-center">
-                  <h3 className="text-xl font-medium text-cyan-400">
+                  <h3 className="text-xl font-medium text-[#bd93f9]">
                     Connect anytime, anywhere
                   </h3>
                   <div className="mt-4 flex justify-center gap-4">

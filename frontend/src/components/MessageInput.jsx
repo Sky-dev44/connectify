@@ -45,19 +45,18 @@ function MessageInput() {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
   return (
-    <div className="p-4 border-t border-slate-700/50">
+    <div className="p-4 border-t bg-[#313342] border-[#44475a] ">
       {imagePreview && (
         <div className="max-w-3xl mx-auto mb-3 flex items-center">
           <div className="relative">
             <img
               src={imagePreview}
               alt="preview"
-              className="w-20 h-20 object-cover rounded-lg border border-slate-700"
+              className="w-20 h-20 object-cover rounded-lg border border-[#44475a]"
             />
 
             <button
-              onClick={removeImage}
-              className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-slate-200 hover:bg-slate-700"
+              className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#1e1f29] flex items-center justify-center text-[#f8f8f2] hover:bg-[#bd93f9] hover:text-[#282a36]"
               type="button"
             >
               <XIcon className="w-4 h-4" />
@@ -77,7 +76,7 @@ function MessageInput() {
             setText(e.target.value);
             isSoundEnabled && playRandomKeyStrokeSound();
           }}
-          className="flex-1 bg-slate-800/50 border border-slate-700/50 rounded-lg py-2 px-4"
+          className="flex-1 bg-[#1e1f29] border border-[#44475a] rounded-lg py-2 px-4 text-[#f8f8f2] placeholder-[#6272a4] focus:ring-2 focus:ring-[#bd93f9] focus:border-transparent outline-none"
           placeholder="Type your message..."
         />
 
@@ -91,7 +90,7 @@ function MessageInput() {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className={`bg-slate-800/50 text-slate-400 hover:text-slate-200 rounded-lg px-4 transition-colors ${imagePreview ? "text-cyan-500" : ""}`}
+          className={`bg-[#1e1f29] text-[#6272a4] hover:text-[#bd93f9] rounded-lg px-4 transition-colors ${imagePreview ? "text-[#bd93f9]" : ""}`}
         >
           <ImageIcon className="w-5 h-5" />
         </button>
@@ -99,7 +98,7 @@ function MessageInput() {
         <button
           type="submit"
           disabled={!text.trim() && !imagePreview}
-          className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-lg px-4 py-2 font-medium hover:from-cyan-600 hover:to-cyan-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-[#bd93f9] text-[#282a36] rounded-lg px-4 py-2 font-medium hover:bg-[#a970f0] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <SendIcon className="w-5 h-5" />
         </button>
